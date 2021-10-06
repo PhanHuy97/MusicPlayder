@@ -164,6 +164,7 @@ const app = {
       cdThumbAnimate.play();
       _this.isPlaying = true;
       play.classList.add("playing");
+      _this.scrollSongIntoView();
     };
     // khi audio pause
     audio.onpause = function () {
@@ -200,7 +201,6 @@ const app = {
         }, 100);
       }
       _this.render();
-      _this.scrollSongIntoView();
     };
     // khi bam nut prev
     prevBtn.onclick = function () {
@@ -212,7 +212,6 @@ const app = {
         audio.play();
       }
       _this.render();
-      _this.scrollSongIntoView();
     };
     // khi het bai hat
     audio.onended = function () {
@@ -243,16 +242,13 @@ const app = {
           _this.currentIndex = Number(songElement.dataset.index);
           _this.loadCurrentSong();
           _this.render();
-          _this.scrollSongIntoView();
           audio.play();
         }
       }
     };
   },
   scrollSongIntoView: function () {
-    setTimeout(function () {
-      $(".song.active").scrollIntoView(false);
-    }, 300);
+    $(".song.active").scrollIntoView(false);
   },
   loadCurrentSong: function () {
     header.textContent = this.currentSong.name;
